@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/vendors', function (){
+    return view('pages.vendors.vendors');
+});
