@@ -19,4 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::get('/', function (Request $request) {
     return 'Welcome to API v1';
 });
-Route::resource('vendors', 'VendorController');
+Route::resource('modems', 'CableModemController');
