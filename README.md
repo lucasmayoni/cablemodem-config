@@ -129,7 +129,15 @@ cablemodem-config:
 ### Endpoints
 
 ```
-GET - https://loca.cmconfig.com/api/v1/modems
+curl 'http://local.cmconfig.com/api/v1/modems?model=&page=1' \
+  -H 'Connection: keep-alive' \
+  -H 'Accept: application/json, text/plain, */*' \
+  -H 'User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36' \
+  -H 'Origin: http://localhost:8081' \
+  -H 'Referer: http://localhost:8081/' \
+  -H 'Accept-Language: es-US,es-419;q=0.9,es;q=0.8' \
+  --compressed \
+  --insecure
 ```
 Devuelve el listado de cablemodems cuyo "model" no figura en el archivo models.json
 
