@@ -1,0 +1,51 @@
+location ~ \.php$ {
+   if ($request_method = 'OPTIONS') {
+    add_header 'Access-Control-Allow-Origin' '*' always;
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PATCH, PUT';
+    add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,env';
+    add_header 'Access-Control-Max-Age' 1728000;
+    add_header 'Content-Type' 'text/plain; charset=utf-8';
+    add_header 'Content-Length' 0;
+    return 204;
+   }
+   if ($request_method = 'GET') {
+    add_header 'Access-Control-Allow-Origin' '*' always;
+    add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PATCH, PUT';
+    add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,Origin,env';
+    add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range,Content-Disposition';
+    }
+
+    if ($request_method = 'POST') {
+        add_header 'Access-Control-Allow-Origin' '*' always;
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PATCH, PUT';
+        add_header 'Access-Control-Allow-Headers' 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization,Origin,env';
+        add_header 'Access-Control-Expose-Headers' 'Content-Length,Content-Range,Content-Disposition';
+    }
+
+    if ($request_method = 'PATCH') {
+        add_header 'Access-Control-Allow-Origin' '*' always;
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PATCH, PUT';
+        add_header 'Access-Control-Allow-Headers' '*';
+        add_header 'Access-Control-Expose-Headers' '*';
+    }
+   
+    if ($request_method = 'PUT') {
+        add_header 'Access-Control-Allow-Origin' '*' always;
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PATCH, PUT';
+        add_header 'Access-Control-Allow-Headers' '*';
+        add_header 'Access-Control-Expose-Headers' '*';
+    }
+
+    if ($request_method = 'DELETE') {
+        add_header 'Access-Control-Allow-Origin' '*' always;
+        add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PATCH, PUT';
+        add_header 'Access-Control-Allow-Headers' '*';
+        add_header 'Access-Control-Expose-Headers' '*';
+    }
+
+    fastcgi_split_path_info ^(.+\.php)(/.+)$;
+    fastcgi_pass php;
+    include fastcgi_params;
+    fastcgi_param SCRIPT_FILENAME     $request_filename;
+    fastcgi_read_timeout 600;
+}
