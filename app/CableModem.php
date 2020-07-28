@@ -4,22 +4,24 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\DB;
 
 class CableModem extends Model
 {
     //
     protected $table = 'docsis_update';
 
+    protected $fillable = [
+        'vsi_model',
+        'vsi_vendor'
+    ];
 
     /**
      * @param $fields
+     * @param array $models
      * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function getList($fields)
+    public function getList($fields, array $models)
     {
-        $models = $this->arrayModels();
         return $this->select('*')
             ->where(function(Builder $query) use ($models){
                  $query->select('*')
@@ -42,14 +44,6 @@ class CableModem extends Model
         return $query;
     }
 
-    /**
-     * @return array
-     */
-    private function arrayModels()
-    {
-        $file = storage_path().'/models.json';
-        $data = json_decode(file_get_contents($file), true);
-        return array_unique(array_column($data['models'],'name'));
-    }
+
 
 }

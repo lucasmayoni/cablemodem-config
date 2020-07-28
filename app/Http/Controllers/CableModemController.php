@@ -34,7 +34,7 @@ class CableModemController extends Controller
             $fields = $request->all();
             Log::info(__METHOD__. " Reading data :", compact('fields'));
 
-            $modems = $this->vendor->getList($fields);
+            $modems = $this->vendor->getList($fields, $this->arrayModels());
 
             $message = [
                 'success' => true,
@@ -88,5 +88,15 @@ class CableModemController extends Controller
 
         }
         return $message;
+    }
+
+    /**
+     * @return array
+     */
+    private function arrayModels()
+    {
+        $file = storage_path().'/models.json';
+        $data = json_decode(file_get_contents($file), true);
+        return array_unique(array_column($data['models'],'name'));
     }
 }
