@@ -140,6 +140,7 @@ curl 'http://local.cmconfig.com/api/v1/modems?model=&page=1' \
   --insecure
 ```
 Devuelve el listado de cablemodems cuyo "model" no figura en el archivo models.json
+El archivo original (y luego editado) se encuentra en /storage
 
 ```
 curl 'http://local.cmconfig.com/api/v1/modems' \
